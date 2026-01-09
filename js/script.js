@@ -6,7 +6,7 @@ const deleteAllBtn = document.getElementById("deleteAllBtn");
 const filterBtn = document.getElementById("filterBtn");
 
 let todos = [];
-let sortOrder = "asc"; // sort
+let sortOrder = "nearest"; // nearest (terdekat) atau farthest (terlama)
 
 function renderTodos(data = todos) {
     todoList.innerHTML = "";
@@ -85,22 +85,29 @@ filterBtn.addEventListener("click", function () {
     if (todos.length === 0) return;
 
     // Toggle sort order
-    sortOrder = sortOrder === "asc" ? "desc" : "asc";
+    sortOrder = sortOrder === "nearest" ? "farthest" : "nearest";
 
-    // Sort todos by date
+    // Sort todos berdasarkan kedekatan dengan hari ini
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
     const sortedTodos = [...todos].sort((a, b) => {
         const dateA = new Date(a.date);
         const dateB = new Date(b.date);
+        
+        // Hitung jarak absolut dari hari ini
+        const distanceA = Math.abs(dateA - today);
+        const distanceB = Math.abs(dateB - today);
 
-        if (sortOrder === "asc") {
-            return dateA - dateB; // Oldest first
+        if (sortOrder === "nearest") {
+            return distanceA - distanceB; // Yang paling dekat dulu
         } else {
-            return dateB - dateA; // Newest first
+            return distanceB - distanceA; // Yang paling lama dulu
         }
     });
 
-    // Update button text to show current order
-    filterBtn.textContent = sortOrder === "asc" ? "Filter ↑" : "Filter ↓";
+    // Update button text
+    filterBtn.textContent = sortOrder === "nearest" ? "Filter (Terdekat)" : "Filter (Terlama)";
 
     renderTodos(sortedTodos);
 });
