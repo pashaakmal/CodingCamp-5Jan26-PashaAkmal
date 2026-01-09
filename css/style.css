@@ -1,0 +1,50 @@
+* {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+.todo-card {
+    background: #00205479;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+}
+
+.btn-secondary {
+    padding: 6px 14px;
+    background: #334155;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.btn-secondary:hover {
+    background: #475569;
+}
+
+.btn-danger {
+    padding: 6px 14px;
+    background: #dc2626;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.btn-danger:hover {
+    background: #b91c1c;
+}
+
+.status {
+    color: #22c55e;
+}
+
+.delete-btn {
+    background: #ef4444;
+    color: white;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.delete-btn:hover {
+    background: #dc2626;
+}
